@@ -1035,10 +1035,12 @@ protected:
           BI->getKind() != InlineAsmBuiltinType::s64 &&
           BI->getKind() != InlineAsmBuiltinType::u64 &&
           BI->getKind() != InlineAsmBuiltinType::s16x2 &&
-          BI->getKind() != InlineAsmBuiltinType::u16x2)
+          BI->getKind() != InlineAsmBuiltinType::u16x2 &&
+          BI->getKind() != InlineAsmBuiltinType::f16x2)
         return false;
       isVec = BI->getKind() == InlineAsmBuiltinType::s16x2 ||
-              BI->getKind() == InlineAsmBuiltinType::u16x2;
+              BI->getKind() == InlineAsmBuiltinType::u16x2 ||
+              BI->getKind() == InlineAsmBuiltinType::f16x2;
     } else {
       return false;
     }
@@ -2297,6 +2299,8 @@ protected:
       return "short";
     case InlineAsmBuiltinType::u16:
       return "ushort";
+    case InlineAsmBuiltinType::f16:
+      return "half";
     case InlineAsmBuiltinType::s32:
       return "int";
     case InlineAsmBuiltinType::u32:
